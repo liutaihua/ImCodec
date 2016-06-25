@@ -27,10 +27,10 @@ public class ImCodec
 		Encoder subEnc = new Encoder();
 		subEnc.addItem("sname", "\\@S@S@A@A");
 
-		enc.addItem("sub", subEnc.getResult());
+		enc.addItem("sub", subEnc.toString());
 
 
-		String res = enc.getResult();
+		String res = enc.toString();
 		System.out.println(res);
 
 		l = Decoder.Decode(res);

@@ -3,7 +3,7 @@ package com.im.codec.codec;
 public class Encoder
 {
     private StringBuffer buf = new StringBuffer();
-    public String getResult()
+    public String toString()
     {
     	buf.append('\0');
         return buf.toString();
