@@ -1,0 +1,6 @@
+#### make
+mvn compile
+mvn package
+
+#### run test
+java -jar ./target/ImCodec_Demo-1.0-SNAPSHOT.jar
