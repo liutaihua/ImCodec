@@ -90,9 +90,8 @@ void decoder::parse(const char * data)
 
 	while (*data != '\0')
 	{
-		if (*data ==  '/')    //end char
+		if (*data ==  '/')
 		{
-
 			kv.value = buf;
 			buf.clear();
 
@@ -110,11 +109,11 @@ void decoder::parse(const char * data)
 			{
 				buf += '@';
 			}
-			else if (*data == 'S')  // char '/'
+			else if (*data == 'S')
 			{
 				buf += '/';
 			}
-			else if (*data == '=')  // key value separator
+			else if (*data == '=')
 			{
 				kv.key = buf;
 				buf.clear();
@@ -128,7 +127,7 @@ void decoder::parse(const char * data)
 		data++;
 	}
 
-	if (*data == '\0' && *(data - 1) != '/') //末尾漏掉斜线/的情况
+	if (*data == '\0' && *(data - 1) != '/')
 	{
 		kv.value = buf;
 		buf.clear();
