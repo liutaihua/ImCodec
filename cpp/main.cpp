@@ -14,33 +14,38 @@ using namespace std;
 int main(int argc, char **args)
 {
     encoder enc;
-    enc.add_item("url", "http://0163.com");
-    enc.add_item("name", "\\SSS@@@@AA\0AA");
+    enc.add_item("id", 9838939384);
+    enc.add_item("type", "chat");
 
     encoder sub_enc;
-    sub_enc.add_item("child_name", "Hama");
-    sub_enc.add_item("child_age", 99);
+    sub_enc.add_item("username", "狗比");
+    sub_enc.add_item("grade", 6);
+    sub_enc.add_item("uid", 2323232);
 
-    enc.add_item("child", sub_enc.to_string().c_str());
+    encoder sub_enc2;
+    sub_enc2.add_item("content", "测试一下,狗比你大业的你以为你很牛逼吗");
+    sub_enc2.add_item("via", 2);
+    sub_enc2.add_item("user", sub_enc.to_string().c_str());
+
+    enc.add_item("msg", sub_enc2.to_string().c_str());
 
     string enc_str = enc.to_string();
-    cout << "encode: " << enc_str << endl;
+    cout << "encode: " << enc_str << "size:" << sizeof(enc_str) << endl;
     cout << endl;
 
     cout << "decode res:" << endl;
     decoder dec;
     dec.parse(enc_str.c_str());
 
-    string url = dec.get_item_as_string("url");
-    string name = dec.get_item_as_string("name");
+    string type = dec.get_item_as_string("type");
+    int id = dec.get_item_as_int("id");
 
-    cout << "url: " << url << ", name: " << name << endl;
+    cout << "type: " << type << ", id: " << id << endl;
 
     decoder child_dec;
-    string child_str = dec.get_item_as_string("child");
+    string child_str = dec.get_item_as_string("msg");
     child_dec.parse(child_str.c_str());
-    string child_name = child_dec.get_item_as_string("child_name");
-    int child_age = child_dec.get_item_as_int("child_age");
+    string content = child_dec.get_item_as_string("content");
 
-    cout << "child info, name: " << child_name << " age: " << std::to_string(child_age) << endl;
+    cout << "content: " << content << endl;
 }
