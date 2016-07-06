@@ -30,7 +30,7 @@ int main(int argc, char **args)
     enc.add_item("msg", sub_enc2.to_string().c_str());
 
     string enc_str = enc.to_string();
-    cout << "encode: " << enc_str << "size:" << sizeof(enc_str) << endl;
+    cout << "encode: " << enc_str << "\nsize:" << sizeof(enc_str) << endl;
     cout << endl;
 
     cout << "decode res:" << endl;
