@@ -11,13 +11,13 @@ public class Encoder
 
     public void addItem(String key, Object value)
     {
-    	buf.append(key.replaceAll("/", "@S").replaceAll("@", "@A"));
-    	buf.append("@=");
-    	if(value instanceof String){
+        buf.append(key.replaceAll("/", "@S").replaceAll("@", "@A"));
+        buf.append("@=");
+        if(value instanceof String){
             buf.append(((String)value).replaceAll("@", "@A").replaceAll("/", "@S"));
         }else if(value instanceof Integer){
-    		buf.append(value);
-    	}
-    	buf.append("/");
+            buf.append(value);
+        }
+        buf.append("/");
     }
 }

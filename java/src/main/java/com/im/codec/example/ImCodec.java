@@ -26,16 +26,19 @@ public class ImCodec
 
 		Encoder subEnc = new Encoder();
 		subEnc.addItem("sname", "\\@S@S@A@A");
+		subEnc.addItem("content", "@@@===@=@@S@@A@A@S测试一下,狗比你大业的你以为你很牛逼吗");
 
 		enc.addItem("sub", subEnc.toString());
+		enc.addItem("special", "@@@===@=@@S@@A@A@SSSAAA@S@A");
 
 
 		String res = enc.toString();
-		System.out.println(res);
+		System.out.println("encoded:" + res);
 
 		l = Decoder.Decode(res);
 		for (String key: l.keySet()) {
-			System.out.println("Key: " + key + ", Value: " + l.get(key));
+			Object v = l.get(key);
+			System.out.println("Key: " + key + ", Value: " + v);
 		}
 	}
 }

@@ -10,14 +10,17 @@ func TestEncode(t *testing.T) {
 		enc := NewEncoder()
 		enc.AddItem("id", 1249004792)
 		enc.AddItem("type", "chat")
+		enc.AddItem("special", "@@@===@=@@S@@A@A@SSSAAA@S@A")
 
 		sub_enc := NewEncoder()
 		sub_enc.AddItem("username", "狗比")
 		sub_enc.AddItem("grade", 6)
 		sub_enc.AddItem("uid", 2323232)
+		sub_enc.AddItem("content", "@@@===@=@@S@@A@A@S测试一下,狗比你大业的你以为你很牛逼吗")
 
 		sub_enc2 := NewEncoder()
-		sub_enc2.AddItem("content", "测试一下,狗比你大业的你以为你很牛逼吗")
+		sub_enc2.AddItem("content", "@@@===@=@@S@@A@A@S测试一下,狗比你大业的你以为你很牛逼吗")
+
 		sub_enc2.AddItem("via", 2)
 		sub_enc2.AddItem("user", sub_enc.ToString())
 
@@ -28,7 +31,8 @@ func TestEncode(t *testing.T) {
 		dec := NewDecoder()
 		mp := dec.Decode(s)
 		t.Log(mp)
-		So(s, ShouldEqual, "id@=1249004792/type@=chat/msg@=content@A=测试一下,狗比你大业的你以为你很牛逼吗@Svia@A=2@Suser@A=username@AA=狗比@ASgrade@AA=6@ASuid@AA=2323232@AS@S/")
+		So(mp["special"], ShouldEqual, "@@@===@=@@S@@A@A@SSSAAA@S@A")
+		So(mp["msg"].(map[string]interface{})["user"].(map[string]interface{})["content"], ShouldEqual, "@@@===@=@@S@@A@A@S测试一下,狗比你大业的你以为你很牛逼吗")
 	})
 }
 
