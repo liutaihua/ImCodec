@@ -12,8 +12,9 @@ func NewDecoder() *Decoder {
 }
 
 func (dc *Decoder) Decode(data string) (map[string]interface{}) {
-	idx := strings.Index(data, "/")
-	data = data[idx+1:]
+	var idx int
+	//idx := strings.Index(data, "/")
+	//data = data[idx+1:]
 	buff := strings.Split(data, "/")
 
 	var (

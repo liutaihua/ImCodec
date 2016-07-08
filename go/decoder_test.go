@@ -3,6 +3,7 @@ package imcodec
 import (
 	"testing"
 	. "github.com/smartystreets/goconvey/convey"
+	"fmt"
 )
 
 func TestEncode(t *testing.T) {
@@ -35,6 +36,11 @@ func TestEncode(t *testing.T) {
 		So(mp["time"], ShouldEqual, "/Date(1467943242551+0800)/")
 		So(mp["special"], ShouldEqual, "@@@===@=@@S@@A@A@SSSAAA@S@A")
 		So(mp["msg"].(map[string]interface{})["user"].(map[string]interface{})["content"], ShouldEqual, "@@@===@=@@S@@A@A@S测试一下,狗比你大业的你以为你很牛逼吗")
+
+		dec2 := NewDecoder()
+		mp2 := dec2.Decode("id@=24050743115806/type@=chat/msg@=content@A=我真是日了狗了@Suser@A=grade@AA=2@ASuid@AA=24637211@ASusername@AA=MyLord@AS@Svia@A=1@S/")
+		t.Log(mp2)
+		fmt.Println("-----------------", mp2)
 	})
 }
 
