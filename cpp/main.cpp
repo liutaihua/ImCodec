@@ -16,6 +16,7 @@ int main(int argc, char **args)
     encoder enc;
     enc.add_item("id", 9838939384);
     enc.add_item("type", "chat");
+    enc.add_item("time", "\/Date(1467943242551+0800)\/");
 
     encoder sub_enc;
     sub_enc.add_item("username", "狗比");
@@ -47,5 +48,8 @@ int main(int argc, char **args)
     child_dec.parse(child_str.c_str());
     string content = child_dec.get_item_as_string("content");
 
+    string time = dec.get_item_as_string("time");
+
     cout << "content: " << content << endl;
+    cout << "time: " << time << endl;
 }

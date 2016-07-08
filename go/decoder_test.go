@@ -11,6 +11,7 @@ func TestEncode(t *testing.T) {
 		enc.AddItem("id", 1249004792)
 		enc.AddItem("type", "chat")
 		enc.AddItem("special", "@@@===@=@@S@@A@A@SSSAAA@S@A")
+		enc.AddItem("time", "/Date(1467943242551+0800)/")
 
 		sub_enc := NewEncoder()
 		sub_enc.AddItem("username", "狗比")
@@ -31,6 +32,7 @@ func TestEncode(t *testing.T) {
 		dec := NewDecoder()
 		mp := dec.Decode(s)
 		t.Log(mp)
+		So(mp["time"], ShouldEqual, "/Date(1467943242551+0800)/")
 		So(mp["special"], ShouldEqual, "@@@===@=@@S@@A@A@SSSAAA@S@A")
 		So(mp["msg"].(map[string]interface{})["user"].(map[string]interface{})["content"], ShouldEqual, "@@@===@=@@S@@A@A@S测试一下,狗比你大业的你以为你很牛逼吗")
 	})
