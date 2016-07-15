@@ -33,9 +33,18 @@ public class ImCodec
 
 
 		String res = enc.toString();
+
+		byte[] b = enc.Bytes();
+		System.out.println("gzip encoded:" + b);
 		System.out.println("encoded:" + res);
 
 		l = Decoder.Decode(res);
+		for (String key: l.keySet()) {
+			Object v = l.get(key);
+			System.out.println("Key: " + key + ", Value: " + v);
+		}
+
+		l = Decoder.GzipDecode(b);
 		for (String key: l.keySet()) {
 			Object v = l.get(key);
 			System.out.println("Key: " + key + ", Value: " + v);
