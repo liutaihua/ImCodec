@@ -52,7 +52,7 @@ func (ed *Encoder) GzipBytes() []byte {
 	return buf.Bytes()
 }
 
-func (ed *Encoder) GzipString(s string) []byte {
+func GzipString(s string) []byte {
 	var (
 		buf bytes.Buffer
 	)
