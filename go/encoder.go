@@ -40,10 +40,20 @@ func (ed *Encoder) AddItem(k string, v interface{}) {
 	ed.buf = append(ed.buf, "/")
 }
 
-func (ed *Encoder) Bytes() []byte {
+func (ed *Encoder) GzipBytes() []byte {
 	//ed.buf = append(ed.buf, "\\0")
 	var (
 		s = strings.Join(ed.buf, "")
+		buf bytes.Buffer
+	)
+	w := gzip.NewWriter(&buf)
+	w.Write([]byte(s))
+	w.Close()
+	return buf.Bytes()
+}
+
+func (ed *Encoder) GzipString(s string) []byte {
+	var (
 		buf bytes.Buffer
 	)
 	w := gzip.NewWriter(&buf)
